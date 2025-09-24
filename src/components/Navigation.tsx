@@ -56,15 +56,6 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
-            <Button 
-              onClick={() => scrollToSection("#contact")}
-              className="bg-gradient-primary hover:shadow-hover transition-all duration-300"
-            >
-              Hire Me
-            </Button>
-          </div>
 
           {/* Mobile Menu Button */}
           <Button
@@ -90,14 +81,6 @@ const Navigation = () => {
                   {item.label}
                 </button>
               ))}
-              <div className="pt-2">
-                <Button 
-                  onClick={() => scrollToSection("#contact")}
-                  className="w-full bg-gradient-primary"
-                >
-                  Hire Me
-                </Button>
-              </div>
             </div>
           </div>
         )}

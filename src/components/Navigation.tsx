@@ -39,8 +39,8 @@ const Navigation = () => {
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            John Doe
+          <div className="text-2xl font-bold text-foreground">
+            ActionPulse
           </div>
 
           {/* Desktop Navigation */}
@@ -54,6 +54,12 @@ const Navigation = () => {
                 {item.label}
               </button>
             ))}
+            <Button 
+              onClick={() => scrollToSection("#contact")}
+              className="bg-gradient-primary hover:shadow-hover transition-all duration-300 ml-4"
+            >
+              Book a call
+            </Button>
           </div>
 
 

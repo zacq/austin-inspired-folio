@@ -5,65 +5,53 @@ import heroBg from "@/assets/hero-bg.jpg";
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/40 to-background/60" />
+      {/* Dark background with subtle gradient */}
+      <div className="absolute inset-0 bg-background" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
       
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <div className="animate-fade-in-up">
-          <h1 className="text-hero font-bold text-foreground mb-6 leading-tight">
-            Hi, I'm <span className="bg-gradient-primary bg-clip-text text-transparent">John Doe</span>
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 rounded-full px-4 py-2 mb-8">
+            <span className="bg-primary text-primary-foreground text-xs font-semibold px-2 py-1 rounded-full">
+              New
+            </span>
+            <span className="text-foreground text-sm font-medium">
+              Automated Lead Generation
+            </span>
+          </div>
+          
+          <h1 className="text-6xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
+            Intelligent Automation for{" "}
+            <span className="bg-gradient-primary bg-clip-text text-transparent">
+              Modern Businesses.
+            </span>
           </h1>
-          <p className="text-subheading text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            Full-Stack Developer & Digital Solutions Architect specializing in modern web applications, 
-            scalable backends, and exceptional user experiences.
+          <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+            ActionPulse brings AI automation to your fingertips & streamline tasks.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
             <Button 
               size="lg" 
-              className="bg-gradient-primary hover:shadow-hover transition-all duration-300 px-8 py-3 text-lg font-medium"
+              className="bg-gradient-primary hover:shadow-hover transition-all duration-300 px-8 py-4 text-lg font-medium"
             >
-              View My Work
+              Get in touch
               <ExternalLink className="ml-2 h-5 w-5" />
             </Button>
             <Button 
               variant="outline" 
               size="lg" 
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 px-8 py-3 text-lg font-medium"
+              className="border-border bg-transparent text-foreground hover:bg-secondary transition-all duration-300 px-8 py-4 text-lg font-medium"
             >
-              Contact Me
-              <Mail className="ml-2 h-5 w-5" />
+              View services
             </Button>
           </div>
           
-          {/* Social Links */}
-          <div className="flex justify-center space-x-6">
-            <a 
-              href="#" 
-              className="text-muted-foreground hover:text-primary transition-colors duration-300 p-2 hover:scale-110 transform"
-              aria-label="GitHub"
-            >
-              <Github className="h-6 w-6" />
-            </a>
-            <a 
-              href="#" 
-              className="text-muted-foreground hover:text-primary transition-colors duration-300 p-2 hover:scale-110 transform"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="h-6 w-6" />
-            </a>
-            <a 
-              href="mailto:john.doe@example.com" 
-              className="text-muted-foreground hover:text-primary transition-colors duration-300 p-2 hover:scale-110 transform"
-              aria-label="Email"
-            >
-              <Mail className="h-6 w-6" />
-            </a>
+          {/* Trust indicator */}
+          <div className="text-muted-foreground text-sm">
+            Over 50+ business trust us
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@ interface Message {
 }
 
 export function ChatSidebar() {
-  const { setOpenMobile } = useSidebar();
+  const { setOpenMobile, setOpen, isMobile } = useSidebar();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
@@ -69,7 +69,7 @@ export function ChatSidebar() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setOpenMobile(false)}
+            onClick={() => (isMobile ? setOpenMobile(false) : setOpen(false))}
             className="h-6 w-6"
           >
             <X className="h-4 w-4" />

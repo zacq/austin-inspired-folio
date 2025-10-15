@@ -71,3 +71,11 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+## Partners logos
+
+Add company logo files to `public/partners/` and update the list in `src/components/Partners.tsx`.
+
+- Prefer SVG for crisp rendering (`public/partners/<company>.svg`).
+- PNG is also supported; keep transparent background and reasonable dimensions.
+- Each entry supports an optional `href` to link to the company site.

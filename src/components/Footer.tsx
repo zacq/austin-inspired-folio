@@ -9,10 +9,10 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">John Doe</h3>
+            <h3 className="text-2xl font-bold mb-4">Neuraflow.ai</h3>
             <p className="text-background/80 leading-relaxed mb-4">
-              Full-Stack Developer passionate about creating exceptional digital experiences 
-              and scalable solutions that make a difference.
+              Neuraflow.ai is a product studio focused on turning ideas into powerful, AI‑driven solutions. 
+              We build scalable systems and sleek digital experiences that help teams move faster and grow smarter.
             </p>
             <div className="flex space-x-4">
               <a 
@@ -45,7 +45,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a href="#about" className="text-background/80 hover:text-background transition-colors duration-300">
-                  About Me
+                  About Us
                 </a>
               </li>
               <li>
@@ -88,7 +88,7 @@ const Footer = () => {
 
         <div className="border-t border-background/20 mt-8 pt-8 text-center">
           <p className="text-background/60 flex items-center justify-center">
-            © {currentYear} John Doe. Made with 
+            © {currentYear} Neuraflow.ai. Made with 
             <Heart className="h-4 w-4 mx-2 text-red-500" />
             and lots of coffee.
           </p>

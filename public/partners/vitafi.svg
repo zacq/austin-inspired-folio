@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="64" viewBox="0 0 200 64" fill="none">
+  <rect width="200" height="64" fill="none"/>
+  <path d="M28 44V20" stroke="#E5E7EB" stroke-width="6"/>
+  <path d="M48 44l8-24 8 24" stroke="#E5E7EB" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M78 20v24" stroke="#E5E7EB" stroke-width="6"/>
+  <path d="M96 20v24" stroke="#E5E7EB" stroke-width="6"/>
+  <text x="110" y="42" fill="#E5E7EB" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="2">VITAFI</text>
+</svg>
+

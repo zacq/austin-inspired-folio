@@ -68,20 +68,7 @@ const Services = () => {
           })}
         </div>
         
-        <div className="mt-16 text-center animate-fade-in">
-          <Card className="p-8 max-w-4xl mx-auto shadow-card border-0">
-            <h3 className="text-2xl font-semibold text-foreground mb-6">Why Choose ActionPulse?</h3>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              We combine cutting-edge AI technology with proven business strategies to deliver automation 
-              solutions that actually work. Our team has helped over 50+ businesses reduce costs, 
-              increase efficiency, and scale their operations.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              From small startups to enterprise companies, we tailor our automation solutions to fit 
-              your specific needs and business goals. Ready to transform your business with intelligent automation?
-            </p>
-          </Card>
-        </div>
+        {/* Partners section will be rendered separately below Services */}
       </div>
     </section>
   );

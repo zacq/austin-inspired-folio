@@ -1,13 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import HeroBackground from "@/components/HeroBackground";
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Dark background with subtle gradient */}
-      <div className="absolute inset-0 bg-background" />
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent" />
+      {/* Hexagonal pattern background with flowing waves */}
+      <HeroBackground />
       
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">

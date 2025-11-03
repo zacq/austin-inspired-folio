@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { Logo } from "@/components/Logo";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,8 +40,12 @@ const Navigation = () => {
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="text-2xl font-bold text-foreground">
-            Neuraflow
+          <div className="flex items-center gap-3">
+            <Logo className="w-10 h-10" />
+            <div className="flex flex-col">
+              <span className="text-2xl font-bold text-foreground">Neuraflow</span>
+              <span className="text-xs text-muted-foreground tracking-wide">Automate. Grow. Intelligently.</span>
+            </div>
           </div>
 
           {/* Desktop Navigation */}

@@ -1,7 +1,7 @@
 import { useState, useRef, MouseEvent } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Eye } from "lucide-react";
+import { ExternalLink, Github, Eye, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ProjectBadge from "./ProjectBadge";
 
@@ -14,6 +14,7 @@ interface ProjectCardProps {
     liveUrl?: string;
     githubUrl?: string;
     status?: "live" | "in-progress" | "completed" | "archived";
+    results?: string[];
   };
   index: number;
   onClick: () => void;
@@ -97,6 +98,18 @@ const ProjectCard = ({ project, index, onClick }: ProjectCardProps) => {
           {project.status && (
             <div className="absolute top-4 left-4">
               <ProjectBadge status={project.status} />
+            </div>
+          )}
+
+          {/* Results Indicator Badge */}
+          {project.results && project.results.length > 0 && (
+            <div className="absolute top-4 right-4">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-500/90 backdrop-blur-sm border border-green-400/50 shadow-lg">
+                <TrendingUp className="w-3.5 h-3.5 text-white" />
+                <span className="text-xs font-semibold text-white">
+                  {project.results.length} Results
+                </span>
+              </div>
             </div>
           )}
 

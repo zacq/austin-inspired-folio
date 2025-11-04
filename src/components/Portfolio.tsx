@@ -10,71 +10,100 @@ const Portfolio = () => {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "Modern e-commerce solution built with React, Node.js, and Stripe integration. Features real-time inventory, advanced search, and mobile-first design.",
-      longDescription: "A comprehensive e-commerce platform designed for modern retail businesses. Built with scalability and user experience in mind, featuring real-time inventory management, advanced product search with filters, secure payment processing through Stripe, and a fully responsive mobile-first design.",
-      technologies: ["React", "Node.js", "PostgreSQL", "Stripe"],
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&crop=center",
+      title: "AI-Powered Chatbot & Voice Solution",
+      description: "Deployed an intelligent WhatsApp + Voice AI system that automated lead capture, qualification, and follow-up — reducing response time by 73% and increasing conversion rates by 31% within the first month.",
+      longDescription: "Developed a scalable, AI-driven communication platform combining WhatsApp chatbots and voice automation to handle inbound and outbound interactions autonomously. The system integrates with CRM and calendar tools to instantly respond to inquiries, qualify leads, and trigger outbound voice calls for missed opportunities. Using n8n, Meta API, and VAPI, the workflow achieves full-cycle automation — from chat to call — while logging every conversation for analytics. The implementation helped clients see: 60% fewer missed leads through real-time routing, 2.5× faster response cycles for new inbound messages, and 25% uplift in appointment bookings within 30 days of deployment.",
+      technologies: ["n8n", "Meta API", "VAPI", "Node.js", "Webhooks"],
+      image: "/projects/ai-chatbot-thumbnail.jpg",
       images: [
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&crop=center",
-        "https://images.unsplash.com/photo-1557821552-17105176677c?w=600&h=400&fit=crop&crop=center",
+        "/projects/ai-chatbot-thumbnail.jpg",
+        "/projects/ai-chatbot-architecture.jpg",
+        "/projects/ai-chatbot-architecture 2.jpg",
       ],
       liveUrl: "#",
       githubUrl: "#",
       status: "live" as const,
-      role: "Full Stack Developer",
-      duration: "6 months",
-      team: "Team of 4",
+      role: "Lead Engineer",
+      duration: "2 Weeks",
+      team: "Team of 2",
       features: [
-        "Real-time inventory tracking",
-        "Advanced product search and filtering",
-        "Secure payment processing with Stripe",
-        "Admin dashboard with analytics",
-        "Mobile-responsive design",
-        "Shopping cart and wishlist functionality"
+        "AI-driven WhatsApp chat automation",
+        "Instant outbound voice call triggers for lead follow-up",
+        "Smart scheduling and CRM synchronization",
+        "Analytics dashboard tracking conversation insights",
+        "Mobile-first, responsive experience",
+        "Multi-channel automation (Chat + Voice + Email)"
+      ],
+      results: [
+        "73% reduction in average lead response time",
+        "31% increase in conversion rate from chat to sale",
+        "60% decrease in manual workload for support teams",
+        "25% boost in booked appointments",
+        "Full ROI achieved within 4 weeks of go-live"
       ]
     },
     {
-      title: "Task Management App",
-      description: "Collaborative project management tool with real-time updates, team collaboration features, and advanced analytics dashboard.",
-      longDescription: "A powerful task management application designed for teams. Features real-time collaboration, advanced analytics, customizable workflows, and seamless integration with popular productivity tools.",
-      technologies: ["TypeScript", "React", "Socket.io", "MongoDB"],
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop&crop=center",
+      title: "Lead Generation & Research Agent",
+      description: "Deployed and automated lead generation and research system built with n8n, Apollo, Apify, Relevance AI, and Perplexity. Streamlines prospect sourcing, enrichment, and reporting — cutting manual research time by over 90%.",
+      longDescription: "An intelligent workflow that automates the end-to-end lead generation and research process. The system sources leads from Apollo, enriches data via Relevance AI and Apify, gathers company insights using Perplexity, and compiles structured research reports automatically. Designed for marketing and sales teams, it eliminates repetitive prospecting tasks, ensures up-to-date intelligence, and produces actionable insights for smarter outreach.",
+      technologies: ["n8n", "Apollo", "Apify", "Relevance AI", "Perplexity", "Google Sheets"],
+      image: "/projects/lead-gen-thumbnail.jpg",
       images: [
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop&crop=center",
+        "/projects/lead-gen-thumbnail.jpg",
+        "/projects/lead-gen-carousel.jpg",
+        "/projects/lead-gen-carousel2.jpg",
       ],
       liveUrl: "#",
       githubUrl: "#",
-      status: "in-progress" as const,
-      role: "Lead Developer",
-      duration: "4 months",
+      status: "live" as const,
+      role: "Lead Engineer",
+      duration: "3 weeks",
       team: "Solo Project",
       features: [
-        "Real-time collaboration with Socket.io",
-        "Drag-and-drop task management",
-        "Team analytics dashboard",
-        "Custom workflow creation",
-        "File attachments and comments",
-        "Email notifications"
+        "Automated lead sourcing and enrichment",
+        "Real-time LinkedIn and company data extraction",
+        "AI-generated personalized research reports",
+        "Seamless integration with Google Sheets and Gmail",
+        "Custom triggers for batch or single-lead research",
+        "White-label HTML report generation"
+      ],
+      results: [
+        "90% reduction in manual lead research time",
+        "3x faster lead list creation and enrichment cycles",
+        "Instant, personalized research reports delivered via email",
+        "Centralized data flow between n8n, Sheets, and your CRM"
       ]
     },
     {
-      title: "Health & Fitness Tracker",
-      description: "Mobile-first wellness application with workout tracking, nutrition monitoring, and social features for fitness enthusiasts.",
-      longDescription: "A comprehensive health and fitness tracking application for mobile devices. Track workouts, monitor nutrition, connect with friends, and achieve your fitness goals with data-driven insights.",
-      technologies: ["React Native", "Firebase", "Chart.js", "Express"],
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop&crop=center",
+      title: "AI-Driven YouTube Lead Generation System",
+      description: "Automated system that converts any YouTube video into a dynamic lead generation funnel — complete with landing page creation, transcript analysis, and multi-platform social content distribution.",
+      longDescription: "An intelligent, end-to-end lead generation system built to help creators and marketers transform video content into automated marketing assets. The workflow begins when a user submits a YouTube link; the system extracts metadata and transcripts through the YouTube Data API, stores structured data in Airtable, and uses ChatGPT/Claude to generate optimized landing page copy and social media captions. A Next.js web app dynamically generates landing pages based on Airtable records, integrating email capture and real-time content updates. The process is orchestrated entirely in n8n, ensuring scalable, no-code automation from video submission to deployment.",
+      technologies: ["n8n", "YouTube Data API", "ChatGPT/Claude", "Airtable", "Next.js", "Cloud Code"],
+      image: "/projects/youtube-leadgen thumbnail.jpg",
+      images: [
+        "/projects/youtube-leadgen thumbnail.jpg",
+        "/projects/Youtube Curousel.jpg",
+        "/projects/Youtube Curousel 2.jpg",
+      ],
       liveUrl: "#",
       githubUrl: "#",
-      status: "completed" as const,
-      role: "Mobile Developer",
-      duration: "3 months",
+      status: "live" as const,
+      role: "Lead Workflow Engineer",
+      duration: "2 Weeks",
+      team: "Solo Build",
       features: [
-        "Workout tracking and planning",
-        "Nutrition and calorie monitoring",
-        "Social features and challenges",
-        "Progress visualization with charts",
-        "Integration with wearable devices"
+        "Automatic video transcript extraction",
+        "AI-generated landing pages from video content",
+        "Auto-posting to LinkedIn, Facebook, and X (formerly Twitter)",
+        "Centralized Airtable database for content & metadata",
+        "Dynamic, responsive landing page with lead capture",
+        "Fully automated deployment pipeline via n8n"
+      ],
+      results: [
+        "Reduced manual content creation time by 80%",
+        "Generated landing pages for 20+ videos in under 5 minutes each",
+        "Increased lead capture conversion by 35% using AI-optimized copy",
+        "Enabled one-click distribution across 3 major social platforms"
       ]
     },
     {
@@ -98,22 +127,35 @@ const Portfolio = () => {
       ]
     },
     {
-      title: "Social Media Scheduler",
-      description: "Multi-platform social media management tool with content scheduling, analytics, and team collaboration features.",
-      longDescription: "A powerful social media management platform that helps businesses schedule content across multiple platforms, analyze performance, and collaborate with team members efficiently.",
-      technologies: ["Next.js", "Prisma", "Redis", "AWS"],
-      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop&crop=center",
+      title: "AI-Powered Viral Faceless Video Automation System",
+      description: "Fully automated AI system that creates and posts viral-style faceless videos daily across social media — handling topic research, scriptwriting, voiceovers, editing, and publishing without human input.",
+      longDescription: "An intelligent, end-to-end video automation platform designed for content creators and marketing teams who want consistent short-form output at scale. The system sources trending topics using Brutalist API, refines them through LLM scoring, and generates viral-style scripts optimized for engagement. It then uses Replicate for faceless AI visuals, Fish Audio for natural-sounding voiceovers, and Shotstack to assemble and render videos in vertical format. All workflows run through n8n, with automated posting to YouTube Shorts, TikTok, Instagram, Facebook, and LinkedIn, creating a completely hands-off content engine that maintains high quality and consistency.",
+      technologies: ["n8n", "Replicate API", "Fish Audio", "Shotstack", "Brutalist API", "Tavily API", "Google Drive", "Blotato API"],
+      image: "/projects/Viral Video thumbnail.jpg",
+      images: [
+        "/projects/Viral Video thumbnail.jpg",
+        "/projects/Viral Video Carousel 1.jpg",
+        "/projects/viral Video Carousel 2.jpg",
+      ],
       liveUrl: "#",
       githubUrl: "#",
-      status: "in-progress" as const,
-      role: "Backend Developer",
-      duration: "5 months",
+      status: "live" as const,
+      role: "Automation Architect",
+      duration: "3 Weeks",
+      team: "Solo Build",
       features: [
-        "Multi-platform scheduling",
-        "Content calendar view",
-        "Performance analytics",
-        "Team collaboration tools",
-        "AI-powered content suggestions"
+        "Daily automated faceless video generation",
+        "LLM-based topic ranking and scriptwriting",
+        "AI-rendered visuals and auto voiceovers",
+        "Auto-captioning optimized for mobile reels",
+        "Seamless cross-platform posting to 5+ channels",
+        "Zero manual editing or intervention required"
+      ],
+      results: [
+        "Reduced manual support time by 65%",
+        "Improved lead response rate by 40%",
+        "Automated over 200 customer calls per week",
+        "Achieved under 5-second average reply time on WhatsApp"
       ]
     },
     {

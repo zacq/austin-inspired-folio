@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { X, ExternalLink, Github, Calendar, Users, Award } from "lucide-react";
+import { X, ExternalLink, Github, Calendar, Users, Award, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import ImageCarousel from "./ImageCarousel";
@@ -17,6 +17,7 @@ interface ProjectModalProps {
     status?: "live" | "in-progress" | "completed" | "archived";
     longDescription?: string;
     features?: string[];
+    results?: string[];
     role?: string;
     duration?: string;
     team?: string;
@@ -164,6 +165,41 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+
+          {/* Performance Results */}
+          {project.results && project.results.length > 0 && (
+            <div className="mb-8">
+              <div className="flex items-center gap-2 mb-4">
+                <TrendingUp className="h-5 w-5 text-green-500" />
+                <h3 className="text-xl font-semibold text-foreground">
+                  Performance Results
+                </h3>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                {project.results.map((result, index) => (
+                  <div
+                    key={index}
+                    className={cn(
+                      "relative p-4 rounded-lg",
+                      "bg-gradient-to-br from-green-500/10 to-emerald-500/5",
+                      "border border-green-500/20",
+                      "hover:border-green-500/40 transition-all duration-300",
+                      "hover:shadow-lg hover:shadow-green-500/10"
+                    )}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 flex-shrink-0">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                      </div>
+                      <p className="text-sm text-foreground font-medium leading-relaxed">
+                        {result}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 

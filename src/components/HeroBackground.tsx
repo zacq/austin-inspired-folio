@@ -1,11 +1,11 @@
 const HeroBackground = () => {
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Dark navy background */}
-      <div className="absolute inset-0 bg-[#0a1628]" />
+      {/* Background - adapts to theme */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:bg-[#0a1628]" />
       
       {/* Hexagonal pattern */}
-      <svg className="absolute inset-0 w-full h-full opacity-40" xmlns="http://www.w3.org/2000/svg">
+      <svg className="absolute inset-0 w-full h-full opacity-20 dark:opacity-40" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="hexagons" x="0" y="0" width="100" height="87" patternUnits="userSpaceOnUse">
             <polygon 
@@ -80,7 +80,7 @@ const HeroBackground = () => {
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
+            className="absolute w-1 h-1 bg-cyan-400 dark:bg-cyan-400 rounded-full animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -91,9 +91,9 @@ const HeroBackground = () => {
           />
         ))}
       </div>
-      
+
       {/* Gradient overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a1628]/80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/60 dark:to-[#0a1628]/80" />
     </div>
   );
 };

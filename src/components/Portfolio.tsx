@@ -10,7 +10,7 @@ const Portfolio = () => {
 
   const projects = [
     {
-      title: "AI-Powered Chatbot & Voice Solution",
+      title: "A.I Front Desk Assistant",
       description: "Deployed an intelligent WhatsApp + Voice AI system that automated lead capture, qualification, and follow-up — reducing response time by 73% and increasing conversion rates by 31% within the first month.",
       longDescription: "Developed a scalable, AI-driven communication platform combining WhatsApp chatbots and voice automation to handle inbound and outbound interactions autonomously. The system integrates with CRM and calendar tools to instantly respond to inquiries, qualify leads, and trigger outbound voice calls for missed opportunities. Using n8n, Meta API, and VAPI, the workflow achieves full-cycle automation — from chat to call — while logging every conversation for analytics. The implementation helped clients see: 60% fewer missed leads through real-time routing, 2.5× faster response cycles for new inbound messages, and 25% uplift in appointment bookings within 30 days of deployment.",
       technologies: ["n8n", "Meta API", "VAPI", "Node.js", "Webhooks"],
@@ -43,7 +43,7 @@ const Portfolio = () => {
       ]
     },
     {
-      title: "Lead Generation & Research Agent",
+      title: "Customer Acquisition System",
       description: "Deployed and automated lead generation and research system built with n8n, Apollo, Apify, Relevance AI, and Perplexity. Streamlines prospect sourcing, enrichment, and reporting — cutting manual research time by over 90%.",
       longDescription: "An intelligent workflow that automates the end-to-end lead generation and research process. The system sources leads from Apollo, enriches data via Relevance AI and Apify, gathers company insights using Perplexity, and compiles structured research reports automatically. Designed for marketing and sales teams, it eliminates repetitive prospecting tasks, ensures up-to-date intelligence, and produces actionable insights for smarter outreach.",
       technologies: ["n8n", "Apollo", "Apify", "Relevance AI", "Perplexity", "Google Sheets"],
@@ -75,7 +75,7 @@ const Portfolio = () => {
       ]
     },
     {
-      title: "AI-Driven YouTube Lead Generation System",
+      title: "Youtube Link to Landing Page System",
       description: "Automated system that converts any YouTube video into a dynamic lead generation funnel — complete with landing page creation, transcript analysis, and multi-platform social content distribution.",
       longDescription: "An intelligent, end-to-end lead generation system built to help creators and marketers transform video content into automated marketing assets. The workflow begins when a user submits a YouTube link; the system extracts metadata and transcripts through the YouTube Data API, stores structured data in Airtable, and uses ChatGPT/Claude to generate optimized landing page copy and social media captions. A Next.js web app dynamically generates landing pages based on Airtable records, integrating email capture and real-time content updates. The process is orchestrated entirely in n8n, ensuring scalable, no-code automation from video submission to deployment.",
       technologies: ["n8n", "YouTube Data API", "ChatGPT/Claude", "Airtable", "Next.js", "Cloud Code"],
@@ -107,7 +107,7 @@ const Portfolio = () => {
       ]
     },
     {
-      title: "AI-Powered Analytics Dashboard",
+      title: "A.I Personal Assistant",
       description: "Business intelligence platform featuring machine learning insights, real-time data visualization, and predictive analytics.",
       longDescription: "An advanced analytics platform powered by machine learning. Provides businesses with actionable insights, predictive analytics, and beautiful data visualizations to drive informed decision-making.",
       technologies: ["Python", "React", "TensorFlow", "PostgreSQL"],
@@ -127,7 +127,7 @@ const Portfolio = () => {
       ]
     },
     {
-      title: "AI-Powered Viral Faceless Video Automation System",
+      title: "Faceless Content Engine",
       description: "Fully automated AI system that creates and posts viral-style faceless videos daily across social media — handling topic research, scriptwriting, voiceovers, editing, and publishing without human input.",
       longDescription: "An intelligent, end-to-end video automation platform designed for content creators and marketing teams who want consistent short-form output at scale. The system sources trending topics using Brutalist API, refines them through LLM scoring, and generates viral-style scripts optimized for engagement. It then uses Replicate for faceless AI visuals, Fish Audio for natural-sounding voiceovers, and Shotstack to assemble and render videos in vertical format. All workflows run through n8n, with automated posting to YouTube Shorts, TikTok, Instagram, Facebook, and LinkedIn, creating a completely hands-off content engine that maintains high quality and consistency.",
       technologies: ["n8n", "Replicate API", "Fish Audio", "Shotstack", "Brutalist API", "Tavily API", "Google Drive", "Blotato API"],
@@ -159,23 +159,35 @@ const Portfolio = () => {
       ]
     },
     {
-      title: "Real Estate Platform",
-      description: "Comprehensive property marketplace with advanced search filters, virtual tours, and integrated mortgage calculator.",
-      longDescription: "A modern real estate platform connecting buyers, sellers, and agents. Features advanced property search, virtual tours, mortgage calculations, and seamless communication tools.",
-      technologies: ["Vue.js", "Django", "PostGIS", "Docker"],
-      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop&crop=center",
+      title: "Custom CRM Solutions",
+      description: "A scalable, all-in-one CRM and business management system designed to replace multiple SaaS subscriptions. Features client tracking, task automation, analytics dashboards, and a fully AI-ready architecture for future automation and chatbot integration.",
+      longDescription: "This platform was built for agencies and service businesses looking to consolidate operations, reduce software costs, and scale with AI. Instead of relying on multiple disconnected tools like Trello, HubSpot, and Google Sheets, the system centralizes all workflows into a unified CRM environment — complete with custom dashboards, lead tracking, proposal generation, and invoicing modules. It integrates AI-ready data infrastructure (vector database + automation endpoints) for future features like intelligent assistants, auto-reporting, and personalized client interactions. Designed for performance and ownership — no subscriptions, no user caps, and total data control.",
+      technologies: ["React", "Next.js", "TypeScript", "Node.js", "Express", "Supabase", "PostgreSQL", "n8n", "LangChain", "OpenAI", "AWS S3"],
+      image: "/projects/CRM Thumbnail.jpg",
+      images: [
+        "/projects/CRM Thumbnail.jpg",
+        "/projects/CRM Carousel 1.jpg",
+        "/projects/CRM Carousel 2.jpg",
+      ],
       liveUrl: "#",
       githubUrl: "#",
-      status: "completed" as const,
-      role: "Frontend Developer",
-      duration: "7 months",
-      team: "Team of 5",
+      status: "live" as const,
+      role: "Lead Full-Stack Engineer",
+      duration: "2 Weeks",
+      team: "Team of 2",
       features: [
-        "Advanced property search with maps",
-        "Virtual tour integration",
-        "Mortgage calculator",
-        "Agent messaging system",
-        "Saved searches and alerts"
+        "Unified CRM dashboard with custom pipeline views",
+        "Built-in lead management, invoicing, and task tracking",
+        "AI-ready data architecture using vector database integration",
+        "Real-time analytics and performance visualization",
+        "Role-based access for teams and clients",
+        "100% ownership — no SaaS lock-in or per-seat costs"
+      ],
+      results: [
+        "Reduced software subscription costs by 70%",
+        "Centralized operations from 5+ tools into one platform",
+        "Delivered a fully functional CRM in under 2 weeks",
+        "Future-proofed architecture for AI agent integration"
       ]
     }
   ];

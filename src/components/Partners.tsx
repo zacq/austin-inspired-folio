@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Award, Building2, Users, Coffee, TrendingUp, Sparkles, Sprout, Code, Car, Home } from "lucide-react";
+import { Award, Building2, Users, Coffee, TrendingUp, Sparkles, Sprout, Code, Car, Home, GraduationCap } from "lucide-react";
 
 type Partner = {
   name: string;
@@ -29,20 +29,22 @@ const getIndustryIcon = (industry: string) => {
       return <Code className={iconClass} />;
     case "Automotive":
       return <Car className={iconClass} />;
+    case "E-Learning":
+      return <GraduationCap className={iconClass} />;
     default:
       return <Building2 className={iconClass} />;
   }
 };
 
 const partners: Partner[] = [
-  { name: "optiven", displayName: "Optiven Agency", industry: "Real Estate" },
+  { name: "rehome", displayName: "ReHome", industry: "Real Estate" },
   { name: "solomom", displayName: "SoloMom", industry: "Community" },
   { name: "menengai", displayName: "Menengai Canopy", industry: "Hospitality" },
   { name: "pipnation", displayName: "Pip Nation", industry: "Trading" },
   { name: "safisha", displayName: "Safisha Hub", industry: "Services" },
   { name: "nestic", displayName: "Nestic Agriventures", industry: "Agriculture" },
   { name: "binary", displayName: "Binary Codify", industry: "Technology" },
-  { name: "kenjap", displayName: "Kenjap Motors", industry: "Automotive" },
+  { name: "skillpath", displayName: "SkillPath.ai", industry: "E-Learning" },
 ];
 
 const Partners = () => {

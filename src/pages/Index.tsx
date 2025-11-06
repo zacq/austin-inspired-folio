@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
@@ -11,6 +12,19 @@ import { FloatingChatButton } from "@/components/FloatingChatButton";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 
 const Index = () => {
+  // Ensure page starts at the top on load
+  useEffect(() => {
+    // Immediate scroll to top
+    window.scrollTo(0, 0);
+
+    // Also scroll after a short delay to handle any async content
+    const timeoutId = setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
     <SidebarProvider defaultOpen={false}>
       <div className="min-h-screen flex w-full">
@@ -30,7 +44,7 @@ const Index = () => {
             <Footer />
           </div>
         </SidebarInset>
-        
+
         <ChatSidebar />
         <FloatingChatButton />
       </div>

@@ -10,7 +10,7 @@ const Portfolio = () => {
 
   const projects = [
     {
-      title: "A.I Front Desk Assistant",
+      title: "A.I Personal Assistant",
       description: "Deployed an intelligent WhatsApp + Voice AI system that automated lead capture, qualification, and follow-up — reducing response time by 73% and increasing conversion rates by 31% within the first month.",
       longDescription: "Developed a scalable, AI-driven communication platform combining WhatsApp chatbots and voice automation to handle inbound and outbound interactions autonomously. The system integrates with CRM and calendar tools to instantly respond to inquiries, qualify leads, and trigger outbound voice calls for missed opportunities. Using n8n, Meta API, and VAPI, the workflow achieves full-cycle automation — from chat to call — while logging every conversation for analytics. The implementation helped clients see: 60% fewer missed leads through real-time routing, 2.5× faster response cycles for new inbound messages, and 25% uplift in appointment bookings within 30 days of deployment.",
       technologies: ["n8n", "Meta API", "VAPI", "Node.js", "Webhooks"],
@@ -107,23 +107,35 @@ const Portfolio = () => {
       ]
     },
     {
-      title: "A.I Personal Assistant",
-      description: "Business intelligence platform featuring machine learning insights, real-time data visualization, and predictive analytics.",
-      longDescription: "An advanced analytics platform powered by machine learning. Provides businesses with actionable insights, predictive analytics, and beautiful data visualizations to drive informed decision-making.",
-      technologies: ["Python", "React", "TensorFlow", "PostgreSQL"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=center",
+      title: "Business Intelligence Dashboard",
+      description: "A custom AI-driven analytics dashboard built for Re-Home, a sustainability-focused real estate company in Nakuru, Kenya. The system tracks furniture collection, refurbishment, sales, and environmental impact — helping Re-Home scale its mission of reuse and recycling.",
+      longDescription: "Re-Home collects, refurbishes, and resells used furniture and home items across Nakuru, promoting sustainable living and circular economy practices. We developed an AI-Powered Dashboard that centralizes real-time data from collection points, workshops, and sales outlets. The dashboard provides live insights into donation trends, refurbishment output, and sales performance. An AI insights engine (LangChain + OpenAI) lets managers ask natural-language questions like: 'Which areas donate the most items?' or 'Which products sell fastest?' This system turns Re-Home's data into actionable sustainability and business intelligence, improving efficiency and transparency.",
+      technologies: ["React", "Next.js", "Node.js", "Supabase", "PostgreSQL", "LangChain", "OpenAI", "TensorFlow", "n8n"],
+      image: "/projects/rehome dahsboard thumbnail.jpg",
+      images: [
+        "/projects/rehome dahsboard thumbnail.jpg",
+        "/projects/rehome curousel 1.jpg",
+        "/projects/Rehome Curousel 2.jpg",
+      ],
       liveUrl: "#",
       githubUrl: "#",
       status: "live" as const,
-      role: "Full Stack Developer",
-      duration: "8 months",
-      team: "Team of 6",
+      role: "Lead Engineer",
+      duration: "3 Weeks",
+      team: "Team of 2",
       features: [
-        "Machine learning predictions",
-        "Real-time data visualization",
-        "Custom report generation",
-        "Multi-source data integration",
-        "Automated insights and alerts"
+        "Real-time tracking of collection, refurbishment, and sales data",
+        "AI-generated insights on demand patterns and inventory flow",
+        "Sustainability dashboard with CO₂-savings metrics",
+        "Automated reporting for donations and refurbishing trends",
+        "Map-based analytics for pickup and resale zones",
+        "Mobile-friendly design for field and office teams"
+      ],
+      results: [
+        "Reduced manual data entry and reporting time by 75%",
+        "Quantified environmental savings from reuse and recycling",
+        "Improved inventory turnover efficiency by 42%",
+        "Enabled real-time visibility into 5+ collection and sales outlets"
       ]
     },
     {

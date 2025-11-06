@@ -10,6 +10,7 @@ interface Message {
   text: string;
   sender: "user" | "bot";
   timestamp: Date;
+  suggestions?: string[];
 }
 
 export function ChatSidebar() {
@@ -17,19 +18,31 @@ export function ChatSidebar() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hello! How can I help you today?",
+      text: "Hello! 👋 I'm Nuera, your AI assistant. How can I help you today?",
       sender: "bot",
       timestamp: new Date(),
+      suggestions: [
+        "⚙️ Show me how AI can automate my business workflows.",
+        "📈 I want to capture more leads and convert faster.",
+        "🧠 Can you help me build an AI dashboard for my business?",
+        "🤖 What kind of automations does NeuraFlow specialize in?",
+        "💬 I'd like to see examples of previous AI projects.",
+        "🧩 How can I integrate AI with my CRM or WhatsApp?",
+        "🚀 I'm ready to get a free workflow audit.",
+      ],
     },
   ]);
   const [inputText, setInputText] = useState("");
   const [sessionId, setSessionId] = useState<string>("");
+  const [showSuggestions, setShowSuggestions] = useState(true);
 
   useEffect(() => {
     try {
       const existing = localStorage.getItem("chatSessionId");
       if (existing) {
         setSessionId(existing);
+        // Prevent auto-scroll on mount
+        window.scrollTo(0, 0);
         return;
       }
       const generated = (globalThis as any)?.crypto?.randomUUID
@@ -42,27 +55,34 @@ export function ChatSidebar() {
       const generated = `sid-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
       setSessionId(generated);
     }
+
+    // Prevent auto-scroll on mount
+    window.scrollTo(0, 0);
   }, []);
 
-  const handleSendMessage = async () => {
-    if (!inputText.trim()) return;
+  const handleSendMessage = async (messageText?: string) => {
+    const textToSend = messageText || inputText.trim();
+    if (!textToSend) return;
+
+    // Hide suggestions after first user message
+    setShowSuggestions(false);
 
     const newMessage: Message = {
       id: Date.now().toString(),
-      text: inputText,
+      text: textToSend,
       sender: "user",
       timestamp: new Date(),
     };
 
     setMessages((prev) => [...prev, newMessage]);
-    const userMessage = inputText;
+    const userMessage = textToSend;
     setInputText("");
 
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 15000);
 
-      const baseUrl = 'https://primary-production-3b968.up.railway.app/webhook/31acc7ad-ca70-4fac-8574-b042141f8a98';
+      const baseUrl = 'https://primary-production-cd196.up.railway.app/webhook/eb5f8df0-c0b2-4598-9bf1-4a1dd2d94802';
       
       // Try different query parameter names for GET request, always include sessionId
       const queryParams = [
@@ -195,9 +215,9 @@ export function ChatSidebar() {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-24 right-6 z-50 w-[340px] max-w-[90vw] rounded-xl border bg-background shadow-xl">
-      <div className="flex items-center justify-between px-3 py-2 border-b">
-        <h2 className="text-sm font-semibold">Chat Support</h2>
+    <div className="fixed bottom-24 right-6 z-50 w-[320px] max-w-[90vw] rounded-xl border bg-background shadow-xl">
+      <div className="flex items-center justify-between px-3 py-1.5 border-b">
+        <h2 className="text-sm font-semibold">Nuera</h2>
         <Button
           variant="ghost"
           size="icon"
@@ -207,30 +227,46 @@ export function ChatSidebar() {
           <X className="h-4 w-4" />
         </Button>
       </div>
-      <div className="flex h-[420px] flex-col">
-        <ScrollArea className="flex-1 p-4">
-          <div className="space-y-4">
+      <div className="flex h-[360px] flex-col">
+        <ScrollArea className="flex-1 p-3">
+          <div className="space-y-3">
             {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${
-                  message.sender === "user" ? "justify-end" : "justify-start"
-                }`}
-              >
+              <div key={message.id}>
                 <div
-                  className={`max-w-[80%] rounded-lg px-3 py-2 text-sm ${
-                    message.sender === "user"
-                      ? "bg-fuchsia-500 text-white"
-                      : "bg-muted text-muted-foreground"
+                  className={`flex ${
+                    message.sender === "user" ? "justify-end" : "justify-start"
                   }`}
                 >
-                  {message.text}
+                  <div
+                    className={`max-w-[80%] rounded-lg px-2.5 py-1.5 text-sm ${
+                      message.sender === "user"
+                        ? "bg-fuchsia-500 text-white"
+                        : "bg-muted text-muted-foreground"
+                    }`}
+                  >
+                    {message.text}
+                  </div>
                 </div>
+
+                {/* Suggestion chips */}
+                {message.suggestions && showSuggestions && (
+                  <div className="flex flex-wrap gap-1.5 mt-2 ml-1">
+                    {message.suggestions.map((suggestion, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => handleSendMessage(suggestion)}
+                        className="text-xs px-2.5 py-1.5 rounded-full bg-fuchsia-500/10 hover:bg-fuchsia-500/20 text-fuchsia-600 dark:text-fuchsia-400 border border-fuchsia-500/30 hover:border-fuchsia-500/50 transition-all duration-200 hover:scale-105"
+                      >
+                        {suggestion}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </ScrollArea>
-        <div className="border-t p-2">
+        <div className="border-t p-1.5">
           <div className="flex gap-2">
             <Input
               placeholder="Type your message..."

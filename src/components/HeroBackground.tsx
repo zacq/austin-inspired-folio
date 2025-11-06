@@ -2,7 +2,7 @@ const HeroBackground = () => {
   return (
     <div className="absolute inset-0 overflow-hidden">
       {/* Background - adapts to theme */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:bg-[#0a1628]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-[#0a1628] dark:via-[#0d1b2e] dark:to-[#0a1628]" />
       
       {/* Hexagonal pattern */}
       <svg className="absolute inset-0 w-full h-full opacity-20 dark:opacity-40" xmlns="http://www.w3.org/2000/svg">

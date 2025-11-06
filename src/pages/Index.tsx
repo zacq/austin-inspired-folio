@@ -7,8 +7,7 @@ import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
-import { ChatSidebar } from "@/components/ChatSidebar";
-import { FloatingChatButton } from "@/components/FloatingChatButton";
+import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 
 const Index = () => {
@@ -45,8 +44,7 @@ const Index = () => {
           </div>
         </SidebarInset>
 
-        <ChatSidebar />
-        <FloatingChatButton />
+        <FloatingWhatsAppButton />
       </div>
     </SidebarProvider>
   );

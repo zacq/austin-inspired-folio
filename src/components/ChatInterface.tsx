@@ -21,7 +21,7 @@ const ChatInterface = ({ webhookUrl }: ChatInterfaceProps) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hello! 👋 I'm Nuera, your AI assistant. How can I help you today?",
+      text: "Hello! 👋 I'm Neura, your AI assistant. How can I help you today?",
       sender: "bot",
       timestamp: new Date(),
       suggestions: [
@@ -38,9 +38,22 @@ const ChatInterface = ({ webhookUrl }: ChatInterfaceProps) => {
   const [inputText, setInputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(true);
+  const [sessionId, setSessionId] = useState<string>("");
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const isInitialMount = useRef(true);
+
+  // Generate or retrieve session ID
+  useEffect(() => {
+    const storedSessionId = localStorage.getItem('chat-interface-session-id');
+    if (storedSessionId) {
+      setSessionId(storedSessionId);
+    } else {
+      const newSessionId = `session-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+      localStorage.setItem('chat-interface-session-id', newSessionId);
+      setSessionId(newSessionId);
+    }
+  }, []);
 
   // Auto-scroll to bottom when new messages arrive (but not on initial mount)
   useEffect(() => {
@@ -76,33 +89,196 @@ const ChatInterface = ({ webhookUrl }: ChatInterfaceProps) => {
 
     try {
       // If webhook URL is provided, send to N8n
-      if (webhookUrl) {
-        const response = await fetch(webhookUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            message: userMessage,
-            timestamp: new Date().toISOString(),
-          }),
-        });
+      if (webhookUrl && sessionId) {
+        console.log('🔵 ChatInterface: Sending message to webhook');
+        console.log('📍 Webhook URL:', webhookUrl);
+        console.log('🆔 Session ID:', sessionId);
+        console.log('💬 Message:', userMessage);
 
-        if (response.ok) {
-          const data = await response.json();
-          const botResponse = data.response || data.message || "I received your message!";
-          
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+        // Try different query parameter names for GET request, always include sessionId
+        const queryParams = [
+          `message=${encodeURIComponent(userMessage)}&sessionId=${encodeURIComponent(sessionId)}`,
+          `text=${encodeURIComponent(userMessage)}&sessionId=${encodeURIComponent(sessionId)}`,
+          `prompt=${encodeURIComponent(userMessage)}&sessionId=${encodeURIComponent(sessionId)}`,
+          `input=${encodeURIComponent(userMessage)}&sessionId=${encodeURIComponent(sessionId)}`,
+        ];
+
+        let lastError: unknown = null;
+        let successText: string | null = null;
+
+        for (const param of queryParams) {
+          try {
+            const url = `${webhookUrl}?${param}`;
+            console.log('🌐 Attempting request:', url);
+
+            const response = await fetch(url, {
+              method: 'GET',
+              mode: 'cors',
+              credentials: 'omit',
+              headers: {
+                'Accept': 'application/json, text/plain;q=0.8, */*;q=0.5',
+              },
+              signal: controller.signal,
+            });
+
+            console.log('✅ Response received:', {
+              status: response.status,
+              statusText: response.statusText,
+              ok: response.ok,
+              headers: Object.fromEntries(response.headers.entries())
+            });
+
+            // Read response safely as JSON or text
+            const contentType = response.headers.get('content-type') || '';
+            let parsed: any = null;
+            let rawText: string = '';
+
+            try {
+              // First, get the raw text
+              rawText = await response.text();
+              console.log('📄 Raw response text:', rawText);
+
+              // Try to parse as JSON
+              if (rawText && rawText.trim()) {
+                try {
+                  parsed = JSON.parse(rawText);
+                  console.log('📦 Parsed as JSON:', parsed);
+                } catch (jsonError) {
+                  // If not JSON, treat as plain text
+                  parsed = { text: rawText };
+                  console.log('📦 Parsed as plain text:', parsed);
+                }
+              } else {
+                parsed = null;
+                console.log('⚠️ Empty response body');
+              }
+            } catch (e) {
+              console.error('❌ Error reading response:', e);
+              parsed = null;
+            }
+
+            console.log('📦 Final parsed response:', parsed);
+
+            if (!response.ok) {
+              lastError = new Error(`HTTP ${response.status}: ${parsed?.error || parsed?.message || 'Request failed'}`);
+              console.log('❌ Response not OK, trying next parameter...');
+              continue;
+            }
+
+            // Extract reply from response - enhanced for n8n responses
+            const extractReply = (data: any): string | null => {
+              console.log('🔍 Extracting reply from:', data);
+
+              if (data == null) {
+                console.log('❌ Data is null/undefined');
+                return null;
+              }
+
+              // If it's a plain string, return it
+              if (typeof data === 'string' && data.trim()) {
+                console.log('✅ Found plain string:', data);
+                return data;
+              }
+
+              if (typeof data === 'number' || typeof data === 'boolean') {
+                console.log('✅ Found number/boolean:', data);
+                return String(data);
+              }
+
+              // Try common response field names
+              const direct = data.response || data.message || data.reply || data.text || data.content || data.result || data.output || data.answer || data.bot_response;
+              if (typeof direct === 'string' && direct.trim()) {
+                console.log('✅ Found in direct field:', direct);
+                return direct;
+              }
+
+              // OpenAI format
+              const openAi = data.choices?.[0]?.message?.content || data.choices?.[0]?.text;
+              if (typeof openAi === 'string' && openAi.trim()) {
+                console.log('✅ Found in OpenAI format:', openAi);
+                return openAi;
+              }
+
+              // Try nested data structures
+              const nestedData = extractReply(data.data) || extractReply(data.payload) || extractReply(data.body) || extractReply(data.response);
+              if (nestedData) {
+                console.log('✅ Found in nested data:', nestedData);
+                return nestedData;
+              }
+
+              // If it's an array, try the first item
+              if (Array.isArray(data) && data.length > 0) {
+                const firstItem = extractReply(data[0]);
+                if (firstItem) {
+                  console.log('✅ Found in array first item:', firstItem);
+                  return firstItem;
+                }
+              }
+
+              console.log('❌ No reply found in data structure');
+              return null;
+            };
+
+            successText = extractReply(parsed);
+            console.log('🔍 Final extracted text:', successText);
+
+            // If response is successful (200 OK) but empty, treat as success with default message
+            if (response.ok && !successText) {
+              console.log('✅ Webhook reached but returned empty response - showing acknowledgment');
+              clearTimeout(timeoutId);
+              const botMessageObj: Message = {
+                id: (Date.now() + 1).toString(),
+                text: "Thank you for your message! I've received it and will process your request. Our team will get back to you shortly.",
+                sender: "bot",
+                timestamp: new Date(),
+              };
+              setMessages((prev) => [...prev, botMessageObj]);
+              setIsLoading(false);
+              return;
+            }
+
+            if (successText) {
+              console.log('✅ Success! Displaying bot response');
+              clearTimeout(timeoutId);
+              const botMessageObj: Message = {
+                id: (Date.now() + 1).toString(),
+                text: successText,
+                sender: "bot",
+                timestamp: new Date(),
+              };
+              setMessages((prev) => [...prev, botMessageObj]);
+              setIsLoading(false);
+              return;
+            }
+          } catch (err: any) {
+            if (err.name === 'AbortError') {
+              lastError = new Error('Request timed out after 15 seconds');
+              break;
+            }
+            lastError = err;
+            continue;
+          }
+        }
+
+        clearTimeout(timeoutId);
+
+        // If we got here, all attempts failed
+        if (successText) {
           const botMessageObj: Message = {
             id: (Date.now() + 1).toString(),
-            text: botResponse,
+            text: successText,
             sender: "bot",
             timestamp: new Date(),
           };
-          
           setMessages((prev) => [...prev, botMessageObj]);
-        } else {
-          throw new Error("Failed to get response");
+          setIsLoading(false);
+          return;
         }
+
+        throw lastError ?? new Error('Unknown webhook error');
       } else {
         // Simulate bot response for demo
         setTimeout(() => {
@@ -117,11 +293,12 @@ const ChatInterface = ({ webhookUrl }: ChatInterfaceProps) => {
         }, 1000);
         return;
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error sending message:", error);
+      const details = typeof error?.message === 'string' ? ` (${error.message})` : '';
       const errorMessageObj: Message = {
         id: (Date.now() + 1).toString(),
-        text: "Sorry, I'm having trouble connecting right now. Please try again later.",
+        text: `Sorry, I'm having trouble connecting right now${details}. Please try again later.`,
         sender: "bot",
         timestamp: new Date(),
       };
@@ -152,7 +329,7 @@ const ChatInterface = ({ webhookUrl }: ChatInterfaceProps) => {
             <Bot className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h3 className="text-base font-semibold text-foreground">Nuera</h3>
+            <h3 className="text-base font-semibold text-foreground">Neura</h3>
             <p className="text-xs text-muted-foreground">Online • Ready to help</p>
           </div>
         </div>

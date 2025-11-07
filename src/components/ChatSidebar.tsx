@@ -18,7 +18,7 @@ export function ChatSidebar() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Hello! 👋 I'm Nuera, your AI assistant. How can I help you today?",
+      text: "Hello! 👋 I'm Neura, your AI assistant. How can I help you today?",
       sender: "bot",
       timestamp: new Date(),
       suggestions: [
@@ -82,7 +82,7 @@ export function ChatSidebar() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 15000);
 
-      const baseUrl = 'https://primary-production-cd196.up.railway.app/webhook-test/eb5f8df0-c0b2-4598-9bf1-4a1dd2d94802';
+      const baseUrl = 'https://primary-production-cd196.up.railway.app/webhook/eb5f8df0-c0b2-4598-9bf1-4a1dd2d94802';
       
       // Try different query parameter names for GET request, always include sessionId
       const queryParams = [
@@ -217,7 +217,7 @@ export function ChatSidebar() {
   return (
     <div className="fixed bottom-24 right-6 z-50 w-[320px] max-w-[90vw] rounded-xl border bg-background shadow-xl">
       <div className="flex items-center justify-between px-3 py-1.5 border-b">
-        <h2 className="text-sm font-semibold">Nuera</h2>
+        <h2 className="text-sm font-semibold">Neura</h2>
         <Button
           variant="ghost"
           size="icon"

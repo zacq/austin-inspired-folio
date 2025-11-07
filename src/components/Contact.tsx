@@ -3,8 +3,8 @@ import { MessageCircle, Sparkles, Zap, Clock } from "lucide-react";
 import ChatInterface from "./ChatInterface";
 
 const Contact = () => {
-  // N8n webhook URL for chat interface
-  const N8N_WEBHOOK_URL = "https://primary-production-cd196.up.railway.app/webhook-test/eb5f8df0-c0b2-4598-9bf1-4a1dd2d94802";
+  // N8n webhook URL for chat interface (production endpoint)
+  const N8N_WEBHOOK_URL = "https://primary-production-cd196.up.railway.app/webhook/eb5f8df0-c0b2-4598-9bf1-4a1dd2d94802";
 
   const features = [
     {

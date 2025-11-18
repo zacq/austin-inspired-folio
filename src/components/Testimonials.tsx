@@ -2,20 +2,19 @@ import { Quote } from "lucide-react";
 import YouTubePlayer from "./YouTubePlayer";
 
 const Testimonials = () => {
-  // Placeholder testimonials - Replace videoId with actual YouTube video IDs
   const testimonials = [
     {
       id: "1",
-      name: "Sarah Johnson",
+      name: "Sarah Chen",
       role: "CEO & Founder @ TechStart Inc",
-      videoId: "dQw4w9WgXcQ", // Placeholder - Replace with actual video ID
-      title: "Sarah Johnson - CEO & Founder @ TechStart Inc | Client Testimonial"
+      videoId: "zRm_nBD0PB4",
+      title: "Sarah Chen - CEO & Founder @ TechStart Inc | Client Testimonial"
     },
     {
       id: "2",
       name: "Michael Chen",
       role: "CTO @ Innovation Labs",
-      videoId: "dQw4w9WgXcQ", // Placeholder - Replace with actual video ID
+      videoId: "JJq6prKqlhI",
       title: "Michael Chen - CTO @ Innovation Labs | Client Testimonial"
     }
   ];

@@ -1,28 +1,28 @@
 import { Card } from "@/components/ui/card";
-import { MessageCircle, Sparkles, Zap, Clock } from "lucide-react";
-import ChatInterface from "./ChatInterface";
+import { Button } from "@/components/ui/button";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 const Contact = () => {
-  // N8n webhook URL for chat interface (production endpoint)
-  const N8N_WEBHOOK_URL = "https://primary-production-cd196.up.railway.app/webhook-test/eb5f8df0-c0b2-4598-9bf1-4a1dd2d94802";
-
-  const features = [
+  const contactMethods = [
     {
-      icon: MessageCircle,
-      title: "Instant Responses",
-      description: "Get answers to your questions in real-time",
+      icon: Mail,
+      title: "Email Us",
+      description: "info@neuraflow.ai",
+      link: "mailto:info@neuraflow.ai",
       gradient: "from-cyan-500 to-blue-500"
     },
     {
-      icon: Sparkles,
-      title: "AI-Powered",
-      description: "Intelligent assistance powered by advanced AI",
+      icon: Phone,
+      title: "Call Us",
+      description: "+254 728 740 205",
+      link: "tel:+254728740205",
       gradient: "from-purple-500 to-pink-500"
     },
     {
-      icon: Clock,
-      title: "24/7 Available",
-      description: "Always here when you need support",
+      icon: MapPin,
+      title: "Location",
+      description: "Nairobi, Kenya",
+      link: "#",
       gradient: "from-orange-500 to-red-500"
     }
   ];
@@ -41,45 +41,77 @@ const Contact = () => {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
           <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6">
-            <Zap className="w-4 h-4 text-primary" />
+            <Send className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-primary">Let's Connect</span>
           </div>
 
           <h2 className="text-heading font-bold text-foreground mb-6">Get In Touch</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Ready to bring your ideas to life? Let's discuss your next project and create
-            something amazing together. I'm always excited to work on new challenges.
+            Ready to transform your business with AI automation? Let's discuss your next project and create
+            something amazing together. We're always excited to work on new challenges.
           </p>
         </div>
 
-        {/* Features Grid */}
+        {/* Contact Methods Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {features.map((feature, index) => (
+          {contactMethods.map((method, index) => (
             <Card
               key={index}
-              className="group p-6 border-border/50 bg-secondary/30 backdrop-blur-sm hover:bg-secondary/50 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/20 animate-fade-in"
+              className="group p-8 border-border/50 bg-secondary/30 backdrop-blur-sm hover:bg-secondary/50 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-primary/20 animate-fade-in cursor-pointer"
               style={{ animationDelay: `${index * 0.1}s` }}
+              onClick={() => {
+                if (method.link !== "#") {
+                  window.location.href = method.link;
+                }
+              }}
             >
               <div className="flex flex-col items-center text-center">
-                <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg`}>
-                  <feature.icon className="w-7 h-7 text-white" />
+                <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${method.gradient} flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg`}>
+                  <method.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
+                <h3 className="text-lg font-semibold text-foreground mb-2">{method.title}</h3>
+                <p className="text-sm text-muted-foreground font-medium">{method.description}</p>
               </div>
             </Card>
           ))}
         </div>
 
-        {/* Chat Interface */}
-        <div className="max-w-4xl mx-auto animate-scale-in">
-          <ChatInterface webhookUrl={N8N_WEBHOOK_URL} />
+        {/* CTA Section */}
+        <div className="max-w-3xl mx-auto text-center animate-scale-in">
+          <Card className="p-8 md:p-12 border-2 border-primary/30 bg-gradient-to-br from-primary/5 via-purple-500/5 to-transparent backdrop-blur-sm">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Ready to Automate Your Business?
+            </h3>
+            <p className="text-muted-foreground mb-8 leading-relaxed">
+              Schedule a free consultation to discover how AI automation can transform your workflows,
+              increase efficiency, and drive growth.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                size="lg"
+                className="bg-gradient-primary hover:shadow-hover transition-all duration-300 px-8"
+                onClick={() => window.location.href = 'mailto:info@neuraflow.ai'}
+              >
+                <Mail className="mr-2 h-5 w-5" />
+                Email Us
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-primary/50 text-primary hover:bg-primary hover:text-white transition-all duration-300 px-8"
+                onClick={() => window.open('https://wa.me/254728740205?text=Hello!%20I%20would%20like%20to%20discuss%20a%20project%20with%20you.', '_blank')}
+              >
+                <Phone className="mr-2 h-5 w-5" />
+                WhatsApp Us
+              </Button>
+            </div>
+          </Card>
         </div>
 
         {/* Info Text */}
         <div className="text-center mt-8 animate-fade-in" style={{ animationDelay: "0.3s" }}>
           <p className="text-sm text-muted-foreground">
-            💡 <span className="font-medium">Tip:</span> Ask me anything about our services, pricing, or how we can help your business!
+            💡 <span className="font-medium">Tip:</span> Prefer a quick chat? Click the WhatsApp button in the bottom-left corner!
           </p>
         </div>
       </div>

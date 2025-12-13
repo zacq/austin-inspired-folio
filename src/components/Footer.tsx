@@ -1,6 +1,7 @@
 import { Github, Linkedin, Mail, Heart, ArrowUp, Sparkles } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -121,13 +122,13 @@ const Footer = () => {
                 </a>
               </li>
               <li className="mt-4">
-                <a
-                  href="#"
+                <Link
+                  to="/academy"
                   className="group inline-flex items-center gap-2 bg-gradient-to-r from-primary to-purple-500 text-white px-4 py-2 rounded-full hover:shadow-lg hover:shadow-primary/50 hover:scale-105 transition-all duration-300"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span className="font-semibold">Courses</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

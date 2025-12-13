@@ -1,10 +1,8 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
-import TechnologyFilter from "./TechnologyFilter";
 
 const Portfolio = () => {
-  const [selectedTech, setSelectedTech] = useState("All");
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -204,32 +202,6 @@ const Portfolio = () => {
     }
   ];
 
-  // Get all unique technologies
-  const allTechnologies = useMemo(() => {
-    const techSet = new Set<string>();
-    projects.forEach(project => {
-      project.technologies.forEach(tech => techSet.add(tech));
-    });
-    return Array.from(techSet).sort();
-  }, []);
-
-  // Filter projects based on selected technology
-  const filteredProjects = useMemo(() => {
-    if (selectedTech === "All") return projects;
-    return projects.filter(project =>
-      project.technologies.includes(selectedTech)
-    );
-  }, [selectedTech]);
-
-  // Count projects per technology
-  const projectCounts = useMemo(() => {
-    const counts: Record<string, number> = { All: projects.length };
-    allTechnologies.forEach(tech => {
-      counts[tech] = projects.filter(p => p.technologies.includes(tech)).length;
-    });
-    return counts;
-  }, [allTechnologies]);
-
   const handleProjectClick = (project: typeof projects[0]) => {
     setSelectedProject(project);
     setIsModalOpen(true);
@@ -249,25 +221,17 @@ const Portfolio = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-12 animate-fade-in">
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-heading font-bold text-foreground mb-6">Featured Projects</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            A showcase of my recent work spanning various industries and technologies.
-            Each project represents a unique challenge and innovative solution.
+            Real-world AI automation solutions that drive measurable business results.
+            Each project showcases how intelligent systems can transform operations, boost revenue, and scale growth.
           </p>
         </div>
 
-        {/* Technology Filter */}
-        <TechnologyFilter
-          technologies={allTechnologies}
-          selectedTech={selectedTech}
-          onSelectTech={setSelectedTech}
-          projectCounts={projectCounts}
-        />
-
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <ProjectCard
               key={index}
               project={project}
@@ -276,15 +240,6 @@ const Portfolio = () => {
             />
           ))}
         </div>
-
-        {/* Empty State */}
-        {filteredProjects.length === 0 && (
-          <div className="text-center py-20">
-            <p className="text-muted-foreground text-lg">
-              No projects found with the selected technology.
-            </p>
-          </div>
-        )}
       </div>
 
       {/* Project Detail Modal */}

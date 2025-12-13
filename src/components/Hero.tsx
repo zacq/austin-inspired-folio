@@ -92,10 +92,12 @@ const Hero = () => {
                     : 'opacity-0 translate-x-full'
                 }`}
               >
-                <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-8 leading-tight px-4">
-                  {message.title.split('.')[0]}.{" "}
-                  <span className="bg-gradient-primary bg-clip-text text-transparent">
-                    {message.title.split('.').slice(1).join('.')}
+                <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight px-4">
+                  <span className="block text-gray-900 dark:text-white text-6xl md:text-8xl mb-2">
+                    {message.title.split('.')[0]}.
+                  </span>
+                  <span className="block bg-gradient-primary bg-clip-text text-transparent text-4xl md:text-6xl font-extrabold">
+                    {message.title.split('.').slice(1).join('.').trim()}
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed px-4">
